@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>River Level Visualisation</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{url_for('static', filename='MarkerCluster.css') }}" />
+	<link rel="stylesheet"href="{{url_for('static', filename='MarkerCluster.Default.css') }}" />
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+<!-- 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" /> -->
+
+	<style>
+		html, body {
+   		height: 100%;
+/*    		width: 100%; */
+		}
+		
+		#map {
+			width: 1270px;			
+			height: 600px;
+		}
+
+		.info {
+			padding: 6px 8px;
+			font: 14px/16px Arial, Helvetica, sans-serif;
+			background: white;
+			background: rgba(255,255,255,0.8);
+			box-shadow: 0 0 15px rgba(0,0,0,0.2);
+			border-radius: 5px;
+		}
+		.info h4 {
+			margin: 0 0 5px;
+			color: #777;
+		}
+
+		.legend {
+			text-align: left;
+			line-height: 18px;
+			color: #555;
+		}
+		.legend i {
+			width: 18px;
+			height: 18px;
+			float: left;
+			margin-right: 8px;
+			opacity: 0.7;
+		}
+	</style>
+
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+	<script type="text/javascript" src="static/js/heatcanvas.js"></script>    
+    <script type="text/javascript" src="static/js/heatcanvas-leaflet.js"></script>
+<!-- 	<script type="text/javascript" src="static/js/data.js"></script> -->
+	<script type="text/javascript" src="static/js/leaflet.markercluster-src.js"></script>
+
+	<script type="text/javascript">
+	
+	
+function init(){
+
+		var map = new L.Map("map").setView([52, -2.5],7);;
+        markerLayers = new L.LayerGroup();
+
+		
+		var baseLayer = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; 2014 OpenStreetMap contributors, Imagery &copy; 2014 CloudMade',
+			key: 'BC9A493B41014CAABB98F0471D759707',
+// 			styleId: 118076
+// 			styleId: 22677
+			styleId: 117673
+// 			styleId: 997
+		})
+		
+		map.addLayer(baseLayer)
+		
+		var heatmap = new
+                L.TileLayer.HeatCanvas({},{'step':0.35,
+                'degree':HeatCanvas.LINEAR, 'opacity':0.5});
+                
+               //  heatmap.onRenderingStart(function(){
+//                     document.getElementById("status").innerHTML =
+//                 'rendering';  
+//                 });
+//                 heatmap.onRenderingEnd(function(){
+//                     document.getElementById("status").innerHTML = '';  
+//                 });
+                
+                   
+              
+		var URL = 'http://www.environment-agency.gov.uk/homeandleisure/floods/riverlevels/120717.aspx?stationId='
+
+		dat ={{dat|safe}}
+		
+		data = dat
+		DT = []
+		for (var j=0; j<dat.length; j++)
+			{ DT.push(JSON.parse(dat[j].replace(/[u/']/g, '')))}
+			
+		
+// 		data = JSON.parse(dat.replace(/[u/']/g, ''))
+		
+// 		data = dat.replace(/&#?[a-z0-9]+;/g, "")
+
+		data = DT
+		
+		var markers = new L.MarkerClusterGroup({showCoverageOnHover: false});
+        
+        for(var i=0,l=data.length; i<l; i++) {
+                    heatmap.pushData(data[i][0], data[i][1], data[i][2]);
+                    if(data[i][2]>= 0) {
+                        
+                        marker = new L.Marker(new L.LatLng(data[i][0], data[i][1]));
+                        
+                        Lat = parseFloat(data[i].toString().split(',')[0]).toFixed(5)
+                        Lon = parseFloat(data[i].toString().split(',')[1]).toFixed(5)
+//                         Risk = data[i].toString().split(',')[2]
+//                         Risk = data[i][2].toFixed(3)
+                        Risk = parseFloat(10*data[i][2]).toFixed(4)
+                        R2 = Risk.toString()
+                        if (Risk.indexOf('.') == 3)
+                        	{sli = 5}
+                        else
+                        	{sli=4} 
+                        R2 = R2.slice(0,sli)
+//                         R2 = Risk.slice(0,4)
+                        if (parseFloat(Risk)>=11) {t = '<font color=red>'}
+                        else {t = '<font color=green>'}
+                        marker.bindPopup('<strong>'+data[i][4]+'</strong>' + '<br>'+ '<b>'+'Lat: '+'</b>' + Lat + '<b>'+' Lon: '+'</b>'+ Lon + '<br><br>'+'Current Level is ' + '<b>'+data[i][6]+'m  '+'</b>' + '('+'<b>'+t+R2+'% '+'</b>' + '<font color=black>' + 'of Typical High)' + '<br><br>' + '(Last Updated: ' + data[i][3]+')'+' [EE ref: '+'<a href='+ URL+data[i][5]+ " target=_blank"+">"+data[i][5]+"</a>"+']') ;
+                        markers.addLayer(marker)
+//                         markerLayers.addLayer(marker);
+                    }
+                }
+                map.addLayer(heatmap);
+//                 map.addLayer(markerLayers);
+                map.addLayer(markers);
+                L.control.layers({"heatmap":heatmap, "markers": markers}).addTo(map);
+
+            }
+ 
+               		
+</script>
+</head>
+<body onload="init();">
+<div>
+<!-- <h1>Heatcanvas for Leaflet</h1> -->
+<!-- <p id="status"></p> -->
+</div>
+<div id="map"></div>
+</body>
+</html>

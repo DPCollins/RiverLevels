@@ -4,4 +4,4 @@ pymongo==2.6.3
 python==2.7.6                          
 jinja2==2.7.2
 werkzeug==0.9.4
-gunicorn==0.18.0                        
+gunicorn==18.0                        

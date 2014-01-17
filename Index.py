@@ -30,13 +30,14 @@ def find():
 
 	USER = os.environ['MYAPP_DB_USER']
 	PASS = os.environ['MYAPP_DB_PASSWORD']
-	
+
 	client = MongoClient('mongodb://'+USER+':'+PASS+'@ds027738.mongolab.com:27738/mongotest_dpc')
 	db = client.mongotest_dpc
 
 	dbR = db['RiverLevels']
 
-	res = dbR.find({"date": {"$gt": "2014-01-17"}})
+# 	res = dbR.find({"date": {"$gt": "2014-01-17"}})
+	res = dbR.find().sort("_id",-1).limit(1)  # get latest DB entry
 	# 	res = dbR.find()
 
 	FF = []

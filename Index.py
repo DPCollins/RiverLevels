@@ -38,7 +38,7 @@ def find():
 
 # 	res = dbR.find({"date": {"$gt": "2014-01-17"}})
 	
-	res = dbR.find().sort("_id", 1).limit(1)  # get latest DB entry
+	res = dbR.find().sort("_id", -1).limit(1)  # get latest DB entry
 	# 	res = dbR.find()
 
 	FF = []

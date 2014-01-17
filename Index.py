@@ -10,7 +10,7 @@ import os
 app = Flask(__name__)
 
 # the toolbar is only enabled in debug mode:
-app.debug = True
+app.debug = False
 
 Auth = []
 Auth.append(0)

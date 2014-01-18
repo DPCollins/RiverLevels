@@ -24,13 +24,18 @@
 
 		.info {
 			padding: 6px 8px;
-			font: 14px/16px Arial, Helvetica, sans-serif;
+			font: 12px/16px Arial, Helvetica, sans-serif;
+			width: 300px;
+			/* text-align: left; */
 			background: white;
 			background: rgba(255,255,255,0.8);
 			box-shadow: 0 0 15px rgba(0,0,0,0.2);
 			border-radius: 5px;
 		}
 		.info h4 {
+/* 			text-align: center; */
+			font-weight: bold;
+			font-size:16px;
 			margin: 0 0 5px;
 			color: #777;
 		}
@@ -100,8 +105,26 @@ function init(){
 //                     document.getElementById("status").innerHTML = '';  
 //                 });
                 
-                   
+        var info = L.control();
+
+		info.onAdd = function (map) {
+			this._div = L.DomUtil.create('div', 'info');
+			this.update();
+			return this._div;
+		};
+		
+		info.update = function (props) {
+			this._div.innerHTML = '<h4>UK River Levels</h4>' + 
+		'All data taken from the Environment Agency website which provides additional information on each station. No guarantee is given as to the'
+		+' accuracy of this data.'  
+		};
+
+		info.addTo(map);           
               
+		
+		
+		
+		
 		var URL = 'http://www.environment-agency.gov.uk/homeandleisure/floods/riverlevels/120717.aspx?stationId='
 
 		dat ={{dat|safe}}
@@ -148,7 +171,7 @@ function init(){
                 map.addLayer(heatmap);
 //                 map.addLayer(markerLayers);
                 map.addLayer(markers);
-                L.control.layers({"heatmap":heatmap, "markers": markers}).addTo(map);
+                L.control.layers(null, {"Flood Risk Heatmap":heatmap, "Station Locations": markers}).addTo(map);
 
             }
 // $('#tweet').delay(8000).fadeIn(400);

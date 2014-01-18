@@ -29,8 +29,10 @@ for attempt in xrange(attempts):
 		Risk = []
 		HeatCanv = []
 
-		t = pd.read_csv('/Users/danielcollins/anaconda/envs/RiversEE/code/StationsLatLon2.csv')
-
+# 		t = pd.read_csv('/Users/danielcollins/anaconda/envs/RiversEE/code/StationsLatLon2.csv')
+		
+		t = pd.read_csv('StationsLatLon2.csv')
+		
 		Rid = t.icol(0).astype('int')
 		ix2 = Rid.size
 		ix = 0

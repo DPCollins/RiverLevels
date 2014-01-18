@@ -5,7 +5,7 @@ from pymongo import MongoClient
 import base64
 import requests
 import nltk
-from lxml import html
+# from lxml import html
 import datetime as dt
 import pandas as pd
 import numpy as np

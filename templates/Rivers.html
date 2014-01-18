@@ -47,6 +47,16 @@
 			margin-right: 8px;
 			opacity: 0.7;
 		}
+	    #tweet {
+
+    		position: absolute;
+			top: 18px;
+			left:50px;
+			z-index: 1050;
+
+		}
+
+	
 	</style>
 
 
@@ -141,17 +151,14 @@ function init(){
                 L.control.layers({"heatmap":heatmap, "markers": markers}).addTo(map);
 
             }
- 
-               		
+// $('#tweet').delay(8000).fadeIn(400);
+            		
 </script>
 </head>
 <body onload="init();">
-<div style="width:30px; top:18px;  left:50px" overflow:hidden" class="leaflet-top leaflet-left">
+<div id="tweet" style="width:30px" overflow:hidden>
 <a href="https://twitter.com/share" class="twitter-share-button" style="width:30px">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-<!-- <h1>Heatcanvas for Leaflet</h1> -->
-<!-- <p id="status"></p> -->
 </div>
 <div id="map">
 </div>

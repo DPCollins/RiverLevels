@@ -14,7 +14,7 @@ import os
 
 
 Hour =  dt.datetime.now().hour
-Sched = [6,10,14,19,22]
+Sched = [6,10,14,20,22]
 
 if Hour in Sched:
 

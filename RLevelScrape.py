@@ -14,7 +14,7 @@ import os
 
 
 Hour =  dt.datetime.now().hour
-Sched = [6,10,14,18,22]
+Sched = [6,10,14,19,22]
 
 if Hour in Sched:
 
@@ -198,7 +198,7 @@ if Hour in Sched:
 	
 	# //////////////////////////// Mongo upload //////////////////////////////////////////////
 
-	if len(HeatCanv) > 1930:
+	if len(HeatCanv) > 1900:
 
 		USER = os.environ.get("MYAPP_DB_USER", '')
 		PASS = os.environ.get("MYAPP_DB_PASSWORD", '')

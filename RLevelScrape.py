@@ -13,6 +13,7 @@ from time import sleep
 import os
 
 
+Err = []
 Hour =  dt.datetime.now().hour
 Sched = [6,10,14,20,22]
 
@@ -187,6 +188,7 @@ if Hour in Sched:
 				
 				else:
 					D[Station] = 'N/A'
+					Err.append(tx2)
 					ix+=1
 
 			testData = {'max': max(Risk), 'data':HeatLst}

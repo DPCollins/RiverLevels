@@ -200,6 +200,8 @@ if Hour in Sched:
 	
 	# //////////////////////////// Mongo upload //////////////////////////////////////////////
 
+	print Err
+	
 	if len(HeatCanv) > 1900:
 
 		USER = os.environ.get("MYAPP_DB_USER", '')

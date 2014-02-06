@@ -1,1 +1,2 @@
-web: gunicorn Index:app
+# web: gunicorn Index:app
+web: gunicorn LocalIndHC:app

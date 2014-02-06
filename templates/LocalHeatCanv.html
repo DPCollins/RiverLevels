@@ -98,7 +98,7 @@ function init(){
 
 		$.browser.device = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
 		
-		if ($.browser['device']==true) { z = 5; map.locate({setView: true, maxZoom: 13});}
+		if ($.browser['device']==true) { z = 5}
 		else {z = 7}
 		
 		var map = new L.Map("map").setView([52, -2.5],z);;
@@ -114,6 +114,9 @@ function init(){
 		})
 		
 		map.addLayer(baseLayer)
+		
+		if ($.browser['device']==true) {map.locate({setView: true, maxZoom: 8})}
+		else {console.log('device==false')}
 		
 // 		map.locate({setView: true, maxZoom: 13});
 // 		heatmap = new L.TileLayer.WebGLHeatMap({size: 30000, autoresize: true, opacity: 0.50, alphaRange: 0.3});

@@ -3,7 +3,7 @@
 <head>
 	<title>River Level Visualisation</title>
 	<meta charset="utf-8" />
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{url_for('static', filename='MarkerCluster.css') }}" />
 	<link rel="stylesheet"href="{{url_for('static', filename='MarkerCluster.Default.css') }}" />
@@ -96,7 +96,12 @@
 	
 function init(){
 
-		var map = new L.Map("map").setView([52, -2.5],7);;
+		$.browser.device = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+		
+		if ($.browser['device']==true) { z = 5; map.locate({setView: true, maxZoom: 13});}
+		else {z = 7}
+		
+		var map = new L.Map("map").setView([52, -2.5],z);;
         markerLayers = new L.LayerGroup();
 
 		
@@ -110,7 +115,7 @@ function init(){
 		
 		map.addLayer(baseLayer)
 		
-
+// 		map.locate({setView: true, maxZoom: 13});
 // 		heatmap = new L.TileLayer.WebGLHeatMap({size: 30000, autoresize: true, opacity: 0.50, alphaRange: 0.3});
    		
    		var heatmapLayer = L.TileLayer.heatMap({

@@ -15,7 +15,7 @@ import os
 
 Err = []
 Hour =  dt.datetime.now().hour
-Sched = [6,10,14,18,22]
+Sched = [6,9,12,14,16,18,20,22]
 
 if Hour in Sched:
 

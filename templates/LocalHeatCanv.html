@@ -124,7 +124,7 @@ function init(){
    		var heatmapLayer = L.TileLayer.heatMap({
 					// radius could be absolute or relative
 					// absolute: radius in meters, relative: radius in pixels
-					radius: { value: 14000, absolute: true },
+					radius: { value: 11000, absolute: true },
 			        //radius: { value: 20, absolute: false },
 					opacity: 0.9,
 	
@@ -178,7 +178,7 @@ function init(){
 		data = DT
 		         
         testData = {}
-  		testData.max = 9
+  		testData.max = 40
   		testData.data = []
 		
 		var markers = new L.MarkerClusterGroup({showCoverageOnHover: false});
@@ -220,7 +220,7 @@ function init(){
                 heatmapLayer.setData(testData.data);
                 map.addLayer(heatmapLayer);
                 map.addLayer(markers);
-                L.control.layers(null, {"Flood Risk Heatmap":heatmapLayer, "Station Locations": markers}).addTo(map);
+                L.control.layers(null, {"River Level Heatmap":heatmapLayer, "Station Locations": markers}).addTo(map);
            		
 
 

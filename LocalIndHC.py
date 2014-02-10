@@ -31,7 +31,7 @@ def find():
 	USER = os.environ['MYAPP_DB_USER']
 	PASS = os.environ['MYAPP_DB_PASSWORD']
 
-	CLOUD = str(os.environ['CLOUDM_API'])
+	CLOUD = os.environ['CLOUDM_API']
 	
 	client = MongoClient('mongodb://'+USER+':'+PASS+'@ds027738.mongolab.com:27738/mongotest_dpc')
 	db = client.mongotest_dpc

@@ -221,9 +221,9 @@ function init(){
 //                 map.addLayer(heatmap);
                 heatmapLayer.setData(testData.data);
                 
-                $('.sonic').remove()
                 map.addLayer(heatmapLayer);
                 map.addLayer(markers);
+                $('.sonic').remove()
                 L.control.layers(null, {"River Level Heatmap":heatmapLayer, "Station Locations": markers}).addTo(map);
            		
 

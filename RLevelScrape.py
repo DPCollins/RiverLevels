@@ -15,12 +15,12 @@ import os
 
 Err = []
 Hour =  dt.datetime.now().hour
-Sched = [6,9,12,14,16,18,20,22]
+Sched = [6,9,12,15,18,20,22]
 
 if Hour in Sched:
 
 #
-	attempts = 5
+	attempts = 15
 
 	# prox = ['216.155.156.67','64.120.29.99','208.52.180.213	','216.59.131.70']
 
@@ -52,7 +52,7 @@ if Hour in Sched:
 			for tx in range(0, ix2):
 			
 # 				if tx%10==0:
-				sleep(1)
+# 				sleep(1)
 	# 		for tx in range(0, 1):
 # 				else:
 			

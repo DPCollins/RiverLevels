@@ -52,7 +52,7 @@ if Hour in Sched:
 			for tx in range(0, ix2):
 			
 # 				if tx%10==0:
-				sleep(0.75)
+				sleep(1)
 	# 		for tx in range(0, 1):
 # 				else:
 			

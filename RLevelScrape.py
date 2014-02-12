@@ -20,7 +20,7 @@ Sched = [6,9,12,14,16,18,20,22]
 if Hour in Sched:
 
 #
-	attempts = 15
+	attempts = 5
 
 	# prox = ['216.155.156.67','64.120.29.99','208.52.180.213	','216.59.131.70']
 
@@ -52,7 +52,7 @@ if Hour in Sched:
 			for tx in range(0, ix2):
 			
 # 				if tx%10==0:
-				sleep(1)
+				sleep(0.75)
 	# 		for tx in range(0, 1):
 # 				else:
 			
@@ -98,7 +98,7 @@ if Hour in Sched:
 				print 50* '-'
 				print Station
 	
-				print "%i of %i" %(tx, ix2)
+				print "%i of %i ATTEMPT: %i" %(tx, ix2, attempt)
 				print 50*'-'
 	
 				W = SS2.split()

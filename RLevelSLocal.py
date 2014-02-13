@@ -240,7 +240,7 @@ if Hour in Sched:
 
 # 	print Err
 # 	
-	if len(HeatCanv) > 1900:
+	if len(TOT) > 1900:
 # 
 		USER = os.environ.get("MYAPP_DB_USER", '')
 		PASS = os.environ.get("MYAPP_DB_PASSWORD", '')
@@ -252,9 +252,9 @@ if Hour in Sched:
 		dte = dt.datetime.strftime(TS, "%Y-%m-%d %H:%M")
 
 		post2 = {}
-		post2['data'] = HeatCanv
+		post2['data'] = TOT
 		post2['date'] = dte
-		post2['stations'] = len(HeatCanv)
+		post2['stations'] = len(TOT)
 
 # 		 
 # 		 

@@ -45,6 +45,7 @@ def find():
 	GG = []
 	ik = 0
 	for i in res:
+			date = i['date']
 			for kt in i['data']:
 				FF = []
 				for j in range(0,len(kt)):
@@ -53,7 +54,7 @@ def find():
 				ik+=1
 				GG.append(str(FF))
 		
-	return render_template('Rivers.html',title='Index', dat=GG)
+	return render_template('Rivers.html',title='Index', dat=GG, UP=date)
 
 
 # @app.route ('/login',methods=['POST', 'GET'])

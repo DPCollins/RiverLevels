@@ -97,6 +97,7 @@
 	
 function init(){
 
+		Update = "{{UP}}"
 		$.browser.device = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
 		
 		if ($.browser['device']==true) { z = 5}
@@ -158,7 +159,7 @@ function init(){
 		info.update = function (props) {
 			this._div.innerHTML = '<h4>UK River Levels</h4>' + 
 		'All data taken from the Environment Agency website which provides additional information on each station. No guarantee is given as to the'
-		+' accuracy of this data.'  
+		+' accuracy of this data. <hr/><b>Last Page Update: '+Update+'</strong>'  
 		};
 
 		info.addTo(map);           
@@ -170,6 +171,7 @@ function init(){
 		var URL = 'http://www.environment-agency.gov.uk/homeandleisure/floods/riverlevels/120717.aspx?stationId='
 
 		dat ={{dat|safe}}
+	
 		
 		data = dat
 		DT = []

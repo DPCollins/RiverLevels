@@ -10,7 +10,7 @@ import os
 app = Flask(__name__)
 
 # the toolbar is only enabled in debug mode:
-app.debug = False
+app.debug = True
 
 Auth = []
 Auth.append(0)
@@ -31,7 +31,8 @@ def find():
 	USER = os.environ['MYAPP_DB_USER']
 	PASS = os.environ['MYAPP_DB_PASSWORD']
 
-	CLOUD = os.environ['CLOUDM_API2']
+# 	CLOUD = os.environ['CLOUDM_API2']
+	CLOUD = 'd8790be7e62f44bdb915f1eeb8f42a03'
 	
 	client = MongoClient('mongodb://'+USER+':'+PASS+'@ds027738.mongolab.com:27738/mongotest_dpc')
 	db = client.mongotest_dpc
@@ -47,6 +48,7 @@ def find():
 	GG = []
 	ik = 0
 	for i in res:
+			date = i['date']
 			for kt in i['data']:
 				FF = []
 				for j in range(0,len(kt)):
@@ -55,7 +57,7 @@ def find():
 				ik+=1
 				GG.append(str(FF))
 		
-	return render_template('LocalHeatCanv.html',title='Index', dat=GG, CLD=CLOUD)
+	return render_template('LocalHeatCanv.html',title='Index', dat=GG, CLD=CLOUD, UP=date)
 
 
 # @app.route ('/login',methods=['POST', 'GET'])

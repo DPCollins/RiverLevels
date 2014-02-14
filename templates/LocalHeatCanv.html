@@ -93,6 +93,14 @@
 	<script type="text/javascript" src="static/js/shBrushJScript.js"></script>
 
 	<script type="text/javascript">
+
+String.prototype.replaceAll = function (targetString, subString) {
+ var inputString = this;
+ inputString = inputString.replace(new RegExp(targetString, 'g'), subString); //replace a string globally and case sensitive
+ 
+return (inputString);
+};
+
 	
 	
 function init(){
@@ -176,7 +184,8 @@ function init(){
 		data = dat
 		DT = []
 		for (var j=0; j<dat.length; j++)
-			{ DT.push(JSON.parse(dat[j].replace(/[u']/g, '')))}
+// 			{ DT.push(JSON.parse(dat[j].replace(/[u']/g, '')))}
+			{ DT.push(JSON.parse(dat[j].replaceAll("u'", '').replaceAll("'",'')))}
 		
 
 		data = DT

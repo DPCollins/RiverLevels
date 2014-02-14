@@ -87,10 +87,12 @@
     <script type="text/javascript" src="static/js/heatmap-leaflet.js"></script>
 	<script type="text/javascript" src="static/js/QuadTree.js"></script>
 	<script type="text/javascript" src="static/js/leaflet.markercluster-src.js"></script>
-	<script type="text/javascript" src="static/js/webgl-heatmap.js"></script>
-	<script type="text/javascript" src="static/js/webgl-heatmap-leaflet.js"></script>
+<!-- 	<script type="text/javascript" src="static/js/webgl-heatmap.js"></script> -->
+<!-- 	<script type="text/javascript" src="static/js/webgl-heatmap-leaflet.js"></script> -->
 	<script type="text/javascript" src="static/js/shCore.js"></script>
 	<script type="text/javascript" src="static/js/shBrushJScript.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
 
 	<script type="text/javascript">
 
@@ -194,6 +196,9 @@ function init(){
   		testData.max = 40
   		testData.data = []
 		
+		Pscale = d3.scale.pow().exponent(2)
+		function ramp(x){if (x>1) {return x*3} else {return x}}
+		
 		var markers = new L.MarkerClusterGroup({showCoverageOnHover: false});
         
         for(var i=0,l=data.length; i<l; i++) {
@@ -201,7 +206,8 @@ function init(){
   				a = {}
   				a.lat = data[i][0]
   				a.lon = data[i][1]
-  				a.value = data[i][2]
+//   				a.value = data[i][2]
+  				a.value = Pscale(ramp(data[i][2]/10))
   				testData.data.push(a)
   				
                    

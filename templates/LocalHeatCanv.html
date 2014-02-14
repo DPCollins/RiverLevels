@@ -206,8 +206,8 @@ function init(){
   				a = {}
   				a.lat = data[i][0]
   				a.lon = data[i][1]
-//   				a.value = data[i][2]
-  				a.value = Pscale(ramp(data[i][2]/10))
+  				a.value = data[i][2]
+//   				a.value = Pscale(ramp(data[i][2]/10)) # scale test
   				testData.data.push(a)
   				
                    

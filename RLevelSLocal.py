@@ -12,6 +12,7 @@ import numpy as np
 from time import sleep
 import os
 
+# 
 
 Err = []
 Hour =  dt.datetime.now().hour
